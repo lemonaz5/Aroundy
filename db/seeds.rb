@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+1.upto(10) do |i|
+  Book.create(title: "Event #{i}",
+              author: "Name #{i}",
+              description: "It's book number #{i}",
+              genre: "Indy",
+              power: rand(5),
+              completed_date: Date.today + rand(3).months)
+end
