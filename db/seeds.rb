@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 1.upto(10) do |i|
-  Book.create(title: "Event #{i}",
+  Book.create(title: "Book #{i}",
               author: "Name #{i}",
               description: "It's book number #{i}",
               genre: "Indy",

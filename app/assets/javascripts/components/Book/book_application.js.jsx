@@ -4,6 +4,7 @@ class BookApplication extends React.Component {
     this.handleAdd = this.handleAdd.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
     this.handleDeleteRecord = this.handleDeleteRecord.bind(this)
+    this.handleUpdateRecord = this.handleUpdateRecord.bind(this)
     this.state = {
       books: []
     }
@@ -37,7 +38,12 @@ class BookApplication extends React.Component {
     books.splice(index, 1)
     this.setState({ books: books })
   }
-
+  handleUpdateRecord(old_book, book) {
+    var books = this.state.books.slice()
+    var index = books.indexOf(old_book)
+    books.splice(index, 1, book)
+    this.setState({ books: books })
+  }
   render() {
     return(
       <div>
@@ -88,7 +94,8 @@ class BookApplication extends React.Component {
             <div className="row">
               <div className="col-md-12">
                 <BookTable books={this.state.books}
-                           handleDeleteRecord={this.handleDeleteRecord} />
+                           handleDeleteRecord={this.handleDeleteRecord}
+                           handleUpdateRecord={this.handleUpdateRecord} />
               </div>
             </div>
           </div>

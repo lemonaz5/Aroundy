@@ -1,6 +1,7 @@
 module Api
   class BooksController < ApplicationController
-    skip_before_action :verify_authenticity_token, only: [:create, :destroy]
+    skip_before_action :verify_authenticity_token, only: [:create, :destroy, :update]
+    before_action :set_book, only: [:destroy, :update]
     def index
       render json: Book.all
     end
@@ -22,14 +23,25 @@ module Api
     end
 
     def destroy
-      Book.find(params[:id]).destroy
+      @book.destroy
       head :no_content
+    end
+
+    def update
+      if @book.update(book_params)
+        render json: @book
+      else
+        render nothing: true, status: :unprocessable_entity
+      end
     end
 
     private
     def book_params
       params.require(:book).permit(:title, :author, :description,
                                    :power, :completed_date, :genre)
+    end
+    def set_book
+      @book = Book.find(params[:id])
     end
   end
 end

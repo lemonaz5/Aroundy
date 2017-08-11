@@ -17,7 +17,6 @@ class NewForm extends React.Component {
     e.preventDefault();
     var self = this
     if (this.validForm()){
-      console.log('a',this.state)
       $.ajax({
         url: '/api/books',
         method: 'POST',
@@ -50,9 +49,9 @@ class NewForm extends React.Component {
     }
   }
   handleChange(e) {
-    var input_name = e.target.name;
-    var value = e.target.value;
-    this.setState({ [input_name] : value });
+    var input_name = e.target.name
+    var value = e.target.value
+    this.setState({ [input_name] : value })
   }
   render() {
     return(
@@ -62,7 +61,6 @@ class NewForm extends React.Component {
                  className="form-control"
                  name="title"
                  placeholder="Title"
-                 ref="title"
                  value={this.state.title}
                  onChange={this.handleChange} />
         </div>
@@ -71,7 +69,6 @@ class NewForm extends React.Component {
                  className="form-control"
                  name="author"
                  placeholder="Author"
-                 ref="author"
                  value={this.state.author}
                  onChange={this.handleChange} />
         </div>
@@ -80,7 +77,6 @@ class NewForm extends React.Component {
                  className="form-control"
                  name="completed_date"
                  placeholder="Completed date"
-                 ref="completed_date"
                  value={this.state.completed_date}
                  onChange={this.handleChange} />
         </div>
@@ -88,7 +84,6 @@ class NewForm extends React.Component {
           <select className="form-control"
                   name="genre"
                   placeholder="Genre"
-                  ref="genre"
                   onChange={this.handleChange}
                   value={this.state.genre}
                   >
@@ -105,7 +100,6 @@ class NewForm extends React.Component {
           <select className="form-control"
                   name="power"
                   placeholder="Power"
-                  ref="power"
                   value={parseInt(this.state.power, 10)}
                   onChange={this.handleChange}
                   >
@@ -121,7 +115,6 @@ class NewForm extends React.Component {
                  className="form-control"
                  name="description"
                  placeholder="Description"
-                 ref="description"
                  value={this.state.description}
                  onChange={this.handleChange} />
         </div>
