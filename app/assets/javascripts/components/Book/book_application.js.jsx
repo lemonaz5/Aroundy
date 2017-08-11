@@ -1,8 +1,11 @@
 class BookApplication extends React.Component {
   constructor(props) {
     super(props)
+    this.handleAdd = this.handleAdd.bind(this)
+    this.handleSearch = this.handleSearch.bind(this)
+    this.handleDeleteRecord = this.handleDeleteRecord.bind(this)
     this.state = {
-    books: []
+      books: []
     }
   }
   componentDidMount() {
@@ -19,6 +22,20 @@ class BookApplication extends React.Component {
         alert('Cannot get data from API: ', error);
       }
     })
+  }
+  handleSearch(books) {
+    this.setState({ books: books })
+  }
+  handleAdd(book) {
+    var books = this.state.books
+    books.push(book)
+    this.setState({ books: books })
+  }
+  handleDeleteRecord(book) {
+    var books = this.state.books.slice()
+    var index = books.indexOf(book)
+    books.splice(index, 1)
+    this.setState({ books: books })
   }
 
   render() {
@@ -60,7 +77,18 @@ class BookApplication extends React.Component {
             </div>
             <div className="row">
               <div className="col-md-12">
-                <BookTable books={this.state.books} />
+                <NewForm handleAdd={this.handleAdd}/>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-6">
+                <SearchForm handleSearch={this.handleSearch} />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-12">
+                <BookTable books={this.state.books}
+                           handleDeleteRecord={this.handleDeleteRecord} />
               </div>
             </div>
           </div>
