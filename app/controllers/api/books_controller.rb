@@ -2,8 +2,9 @@ module Api
   class BooksController < ApplicationController
     skip_before_action :verify_authenticity_token, only: [:create, :destroy, :update]
     before_action :set_book, only: [:destroy, :update]
+
     def index
-      render json: Book.all
+      render json: Book.order(sort_by + ' ' + order)
     end
 
     def search
@@ -42,6 +43,19 @@ module Api
     end
     def set_book
       @book = Book.find(params[:id])
+    end
+
+    def sort_by
+      %w(title
+         author
+         completed_date
+         genre
+         power
+         description).include?(params[:sort_by]) ? params[:sort_by] : 'title'
+    end
+
+    def order
+      %w(asc desc).include?(params[:order]) ? params[:order] : 'asc'
     end
   end
 end

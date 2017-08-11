@@ -3,12 +3,16 @@ class BookTable extends React.Component {
     super(props)
     this.handleDeleteRecord = this.handleDeleteRecord.bind(this)
     this.handleUpdateRecord = this.handleUpdateRecord.bind(this)
+    this.handleSortColumn   = this.handleSortColumn.bind(this)
   }
   handleDeleteRecord(book) {
     this.props.handleDeleteRecord(book)
   }
   handleUpdateRecord(old_book, book) {
     this.props.handleUpdateRecord(old_book, book)
+  }
+  handleSortColumn(name, order) {
+    this.props.handleSortColumn(name, order)
   }
   render() {
     var books = []
@@ -22,12 +26,48 @@ class BookTable extends React.Component {
       <table className="table table-striped">
         <thead>
           <tr>
-            <th className="col-md-2">Title</th>
-            <th className="col-md-2">Author</th>
-            <th className="col-md-1">Date</th>
-            <th className="col-md-1">Genre</th>
-            <th className="col-md-1">Power</th>
-            <th className="col-md-3">Description</th>
+            <th className="col-md-2 sortable">
+              <SortColumn name="title"
+                          text="Title"
+                          sort={this.props.sort}
+                          order={this.props.order}
+                          handleSortColumn={this.handleSortColumn}/>
+            </th>
+            <th className="col-md-2 sortable">
+              <SortColumn name="author"
+                          text="Author"
+                          sort={this.props.sort}
+                          order={this.props.order}
+                          handleSortColumn={this.handleSortColumn}/>
+            </th>
+            <th className="col-md-1 sortable">
+              <SortColumn name="completed_date"
+                          text="Date"
+                          sort={this.props.sort}
+                          order={this.props.order}
+                          handleSortColumn={this.handleSortColumn}/>
+            </th>
+            <th className="col-md-1 sortable">
+              <SortColumn name="genre"
+                          text="Genre"
+                          sort={this.props.sort}
+                          order={this.props.order}
+                          handleSortColumn={this.handleSortColumn}/>
+            </th>
+            <th className="col-md-1 sortable">
+              <SortColumn name="power"
+                          text="Power"
+                          sort={this.props.sort}
+                          order={this.props.order}
+                          handleSortColumn={this.handleSortColumn}/>
+            </th>
+            <th className="col-md-3 sortable">
+              <SortColumn name="description"
+                          text="Description"
+                          sort={this.props.sort}
+                          order={this.props.order}
+                          handleSortColumn={this.handleSortColumn}/>
+            </th>
             <th className="col-md-2">Actions</th>
           </tr>
         </thead>

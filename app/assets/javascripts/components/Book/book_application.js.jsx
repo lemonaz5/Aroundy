@@ -5,8 +5,11 @@ class BookApplication extends React.Component {
     this.handleSearch = this.handleSearch.bind(this)
     this.handleDeleteRecord = this.handleDeleteRecord.bind(this)
     this.handleUpdateRecord = this.handleUpdateRecord.bind(this)
+    this.handleSortColumn   = this.handleSortColumn.bind(this)
     this.state = {
-      books: []
+      books: [],
+      sort: "title",
+      order: "asc",
     }
   }
   componentDidMount() {
@@ -43,6 +46,22 @@ class BookApplication extends React.Component {
     var index = books.indexOf(old_book)
     books.splice(index, 1, book)
     this.setState({ books: books })
+  }
+  handleSortColumn(name, order) {
+    if (this.state.sort!=name) {
+      order = 'asc'
+    }
+    $.ajax({
+      url: '/api/books',
+      method: 'GET',
+      data: { sort_by: name, order: order },
+      success: function(data) {
+        this.setState({ books: data, sort: name, order: order })
+      }.bind(this),
+      error: function(xhr, state, error) {
+        alert('Cannot sort events: ', error)
+      }
+    })
   }
   render() {
     return(
@@ -94,8 +113,11 @@ class BookApplication extends React.Component {
             <div className="row">
               <div className="col-md-12">
                 <BookTable books={this.state.books}
+                           sort={this.state.sort}
+                           order={this.state.order}
                            handleDeleteRecord={this.handleDeleteRecord}
-                           handleUpdateRecord={this.handleUpdateRecord} />
+                           handleUpdateRecord={this.handleUpdateRecord}
+                           handleSortColumn={this.handleSortColumn} />
               </div>
             </div>
           </div>
