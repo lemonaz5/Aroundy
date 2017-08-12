@@ -4,14 +4,25 @@ module Api
     before_action :set_book, only: [:destroy, :update]
 
     def index
-      render json: Book.order(sort_by + ' ' + order)
+      render json: {
+        books: Book.paginate(page: page).order(sort_by + ' ' + order),
+        page: page,
+        pages: Book.pages
+      }
     end
 
     def search
       query = params[:query]
       books = Book.where('title LIKE ? OR author LIKE ?',
                           "%#{query}%", "%#{query}%")
-      render json: books
+                  .paginate(page: page)
+      pages = Book.where('title LIKE ? OR author LIKE ?',
+                          "%#{query}%", "%#{query}%")
+                  .pages
+      render json: {
+        books: books,
+        pages: pages
+      }
     end
 
     def create
@@ -56,6 +67,10 @@ module Api
 
     def order
       %w(asc desc).include?(params[:order]) ? params[:order] : 'asc'
+    end
+
+    def page
+      params[:page] || 1
     end
   end
 end

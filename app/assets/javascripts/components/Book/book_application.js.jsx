@@ -1,45 +1,53 @@
 class BookApplication extends React.Component {
   constructor(props) {
     super(props)
+    this.getDataFromApi = this.getDataFromApi.bind(this)
     this.handleAdd = this.handleAdd.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
     this.handleDeleteRecord = this.handleDeleteRecord.bind(this)
     this.handleUpdateRecord = this.handleUpdateRecord.bind(this)
     this.handleSortColumn   = this.handleSortColumn.bind(this)
+    this.handleChangePage   = this.handleChangePage.bind(this)
     this.state = {
       books: [],
       sort: "title",
       order: "asc",
+      page: 1,
+      pages: 1,
     }
   }
   componentDidMount() {
-    this.getDataFromApi()
+    this.getDataFromApi(this.state.page)
   }
-  getDataFromApi() {
+  getDataFromApi(page) {
     var self = this
     $.ajax({
       url: '/api/books',
+      method: 'GET',
+      data: {page: page},
       success(data) {
-        self.setState({ books: data })
+        self.setState({ books: data.books, pages: parseInt(data.pages), page: parseInt(data.page) })
       },
       error(xhr, status, error) {
         alert('Cannot get data from API: ', error);
       }
     })
   }
-  handleSearch(books) {
-    this.setState({ books: books })
+  handleSearch(books, pages) {
+    this.setState({ books: books, pages: pages })
   }
-  handleAdd(book) {
-    var books = this.state.books
-    books.push(book)
-    this.setState({ books: books })
+  handleAdd() {
+    // var books = this.state.books
+    // books.push(book)
+    // this.setState({ books: books, pages: pages })
+    this.getDataFromApi(this.state.page)
   }
-  handleDeleteRecord(book) {
-    var books = this.state.books.slice()
-    var index = books.indexOf(book)
-    books.splice(index, 1)
-    this.setState({ books: books })
+  handleDeleteRecord() {
+    // var books = this.state.books.slice()
+    // var index = books.indexOf(book)
+    // books.splice(index, 1)
+    // this.setState({ books: books })
+    this.getDataFromApi(this.state.page)
   }
   handleUpdateRecord(old_book, book) {
     var books = this.state.books.slice()
@@ -56,12 +64,15 @@ class BookApplication extends React.Component {
       method: 'GET',
       data: { sort_by: name, order: order },
       success: function(data) {
-        this.setState({ books: data, sort: name, order: order })
+        this.setState({ books: data.books, sort: name, order: order })
       }.bind(this),
       error: function(xhr, state, error) {
         alert('Cannot sort events: ', error)
       }
     })
+  }
+  handleChangePage(page) {
+    this.getDataFromApi(page)
   }
   render() {
     return(
@@ -71,14 +82,15 @@ class BookApplication extends React.Component {
             <div className="navbar-header">
               <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span className="sr-only">Toggle navigation</span>
-                <span className="icon-bar">1</span>
-                <span className="icon-bar">2</span>
-                <span className="icon-bar">3</span>
+                <span className="icon-bar" />
+                <span className="icon-bar" />
+                <span className="icon-bar" />
               </button>
-              <a className="navbar-brand" href="#">Aroundy</a>
+              <a className="navbar-brand" href="">Aroundy</a>
             </div>
 
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <SearchForm handleSearch={this.handleSearch} />
               <ul className="nav navbar-nav navbar-right">
                 <li><a href="#">Link</a></li>
                 <li className="dropdown">
@@ -102,13 +114,11 @@ class BookApplication extends React.Component {
             </div>
             <div className="row">
               <div className="col-md-12">
-                <NewForm handleAdd={this.handleAdd}/>
+                <NewForm handleAdd={this.handleAdd} />
               </div>
             </div>
             <div className="row">
-              <div className="col-md-6">
-                <SearchForm handleSearch={this.handleSearch} />
-              </div>
+
             </div>
             <div className="row">
               <div className="col-md-12">
@@ -118,6 +128,9 @@ class BookApplication extends React.Component {
                            handleDeleteRecord={this.handleDeleteRecord}
                            handleUpdateRecord={this.handleUpdateRecord}
                            handleSortColumn={this.handleSortColumn} />
+                <Pagination page={this.state.page}
+                            pages={this.state.pages}
+                            handleChangePage={this.handleChangePage} />
               </div>
             </div>
           </div>

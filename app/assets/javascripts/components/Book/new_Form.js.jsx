@@ -22,7 +22,7 @@ class NewForm extends React.Component {
         method: 'POST',
         data: { book: self.state },
         success(data) {
-          self.props.handleAdd(data)
+          self.props.handleAdd()
           self.setState({
             title: '',
             author: '',
@@ -62,7 +62,8 @@ class NewForm extends React.Component {
                  name="title"
                  placeholder="Title"
                  value={this.state.title}
-                 onChange={this.handleChange} />
+                 onChange={this.handleChange}
+                 required />
         </div>
         <div className="form-group">
           <input type="text"
@@ -70,7 +71,8 @@ class NewForm extends React.Component {
                  name="author"
                  placeholder="Author"
                  value={this.state.author}
-                 onChange={this.handleChange} />
+                 onChange={this.handleChange}
+                 required />
         </div>
         <div className="form-group">
           <input type="date"
@@ -78,15 +80,18 @@ class NewForm extends React.Component {
                  name="completed_date"
                  placeholder="Completed date"
                  value={this.state.completed_date}
-                 onChange={this.handleChange} />
+                 onChange={this.handleChange}
+                 required />
         </div>
         <div className="form-group">
           <select className="form-control"
                   name="genre"
                   placeholder="Genre"
                   onChange={this.handleChange}
+                  required
                   value={this.state.genre}
                   >
+            <option value="none" disabled>N/a</option>
             <option value="fantasy">Fantasy</option>
             <option value="sci-fi">Sci-fi</option>
             <option value="comedy">Comedy</option>
@@ -102,7 +107,9 @@ class NewForm extends React.Component {
                   placeholder="Power"
                   value={parseInt(this.state.power, 10)}
                   onChange={this.handleChange}
+                  required
                   >
+            <option value="0" disabled>N/a</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -116,7 +123,8 @@ class NewForm extends React.Component {
                  name="description"
                  placeholder="Description"
                  value={this.state.description}
-                 onChange={this.handleChange} />
+                 onChange={this.handleChange}
+                 required />
         </div>
         <button type="submit" className="btn btn-primary">Add</button>
       </form>
