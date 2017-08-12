@@ -77,7 +77,7 @@ class BookApplication extends React.Component {
   render() {
     return(
       <div>
-        <nav className="navbar navbar-default">
+        <nav className="navbar navbar-inverse navbar-fixed-top">
           <div className="container-fluid">
             <div className="navbar-header">
               <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -86,7 +86,7 @@ class BookApplication extends React.Component {
                 <span className="icon-bar" />
                 <span className="icon-bar" />
               </button>
-              <a className="navbar-brand" href="">Aroundy</a>
+              <a className="navbar-brand brand" href="">Aroundy</a>
             </div>
 
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -107,11 +107,11 @@ class BookApplication extends React.Component {
             </div>
           </div>
         </nav>
+          <div className="jumbotron">
+                <h1 className="show head">Book Memo</h1>
+                <p className="show">by Aroundy</p>
+          </div>
           <div className="container">
-            <div className="jumbotron">
-                  <h1>Book Memo</h1>
-                  <p>by Aroundy</p>
-            </div>
             <div className="row">
               <div className="col-md-12">
                 <NewForm handleAdd={this.handleAdd} />
