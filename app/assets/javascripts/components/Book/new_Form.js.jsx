@@ -56,6 +56,9 @@ class NewForm extends React.Component {
   render() {
     return(
       <form className="form-inline" onSubmit={this.handleAdd}>
+        <div>
+          <label>- Add New Book -</label>
+        </div>
         <div className="form-group">
           <input type="text"
                  className="form-control"

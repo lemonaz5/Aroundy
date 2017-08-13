@@ -13,9 +13,13 @@ class Pagination extends React.Component {
   }
   render() {
     var page_links = []
-
-    for (var i = 1; i <= this.props.pages ; i++) {
-      page_links.push(this.paginationElement(i))
+    var max_page = this.props.pages
+    var page = this.props.page
+    var boundary = 2
+    for (var i = page-boundary; i <= page+boundary ; i++) {
+      if (i>0 && i<=max_page) {
+        page_links.push(this.paginationElement(i))
+      }
     }
 
     return(
