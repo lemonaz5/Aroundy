@@ -80,7 +80,7 @@ class BookApplication extends React.Component {
           <Navbar handleSearch={this.handleSearch} />
           <div className="jumbotron">
                 <h1 className="show head">Book Memo</h1>
-                <p className="show">by Aroundy</p>
+                <p className="show">by Wannita Takerngsaksiri</p>
           </div>
           <div className="container">
             <div className="row">

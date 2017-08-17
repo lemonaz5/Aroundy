@@ -1,19 +1,32 @@
 class AboutMe extends React.Component {
   render() {
     return (
-      <div>
+      <div style={{textAlign: "center", marginBottom: "100px"}}>
         <Navbar />
-        <img className="aboutme-img" src="https://images.unsplash.com/photo-1495640452828-3df6795cf69b?dpr=1&auto=format&fit=crop&w=1500&h=2250&q=80&cs=tinysrgb&crop=https://images.unsplash.com/photo-1495640452828-3df6795cf69b?dpr=1&auto=format&fit=crop&w=1500&h=2250&q=80&cs=tinysrgb&crop=" alt="trees" />
-        <span>
-          <h1 style={{display: 'inline'}}>Hello.</h1>
-          <p style={{display: 'inline'}}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam sed soluta veritatis blanditiis minima in qui nihil neque, atque voluptatem, nulla quisquam velit! Minima officiis cupiditate, consequatur, asperiores ipsa aliquam.
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam sed soluta veritatis blanditiis minima in qui nihil neque, atque voluptatem, nulla quisquam velit! Minima officiis cupiditate, consequatur, asperiores ipsa aliquam.
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam sed soluta veritatis blanditiis minima in qui nihil neque, atque voluptatem, nulla quisquam velit! Minima officiis cupiditate, consequatur, asperiores ipsa aliquam.
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam sed soluta veritatis blanditiis minima in qui nihil neque, atque voluptatem, nulla quisquam velit! Minima officiis cupiditate, consequatur, asperiores ipsa aliquam.
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam sed soluta veritatis blanditiis minima in qui nihil neque, atque voluptatem, nulla quisquam velit! Minima officiis cupiditate, consequatur, asperiores ipsa aliquam.
+        <img className="img-circle aboutme-img"
+             src="https://images.unsplash.com/photo-1471440671318-55bdbb772f93?dpr=1&auto=format&fit=crop&w=1500&h=1500&q=80&cs=tinysrgb&crop="
+             alt="coffee-book" />
+        <div className="container">
+          <h1>Hello.</h1>
+
+          <p>
+            Aroundy is just a list of books which was completed by an ordinary girl who likes to read and learn. ;)
           </p>
-        </span>
+          <div>
+            <br />
+            <a href="https://linkedin.com/in/wannita-takerngsaksiri">
+              <i className="fa fa-linkedin-square fa-lg">
+                <i> Linkedin</i>
+              </i>
+            </a>
+            <br /> <br />
+            <a href="https://github.com/lemonaz5/Aroundy">
+              <i className="fa fa-github-square fa-lg">
+                <i> Github</i>
+              </i>
+            </a>
+          </div>
+        </div>
       </div>
     )
   }

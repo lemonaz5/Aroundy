@@ -100,6 +100,7 @@ class NewForm extends React.Component {
             <option value="comedy">Comedy</option>
             <option value="romance">Romance</option>
             <option value="knowledge">Knowledge</option>
+            <option value="mystery">Mystery</option>
             <option value="indy">Indy</option>
             <option value="manga">Manga</option>
           </select>

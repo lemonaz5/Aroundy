@@ -20,6 +20,7 @@
 @import "font-awesome";
 
 $light-brown: #785F4D;
+$dark-brown: #654545;
 $yellow-ivory: rgb(215, 210, 182);
 $gray-nav: #222222;
 
@@ -29,14 +30,37 @@ body {
   background: $yellow-ivory;
   color: $light-brown;
 }
+p {
+  font-size: 18px;
+}
+a {
+  color: inherit;
+  :hover {
+    color: $dark-brown;
+  }
+}
 .aboutme-img {
-  width: 40%;
-  box-shadow: 20px 0px 35px 0px $yellow-ivory inset;
+  margin-top: 100px;
+  height: 400px;
 }
 .brand {
   font-family: "Fredericka the Great";
   margin: 20px;
   font-size: 60px;
+}
+.btn-primary {
+  background: $dark-brown;
+  border: $dark-brown;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+  background: $light-brown;
+}
+.form-inline {
+  margin-bottom: 10px;
+}
+.form-control {
+  margin-right: 8px;
+  color: $light-brown;
 }
 .jumbotron {
   height: 1000px;
@@ -58,13 +82,18 @@ body {
   .navbar-collapse {
     background: $gray-nav;
   }
+  .navbar-right {
+    margin-top: 25px;
+  }
 }
-.form-inline {
-  margin-bottom: 10px;
+.pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus{
+  background-color: $dark-brown;
+  border-color: $dark-brown;
 }
-.form-control {
-  margin-right: 8px;
-  color: $light-brown;
+.pagination > li > a, .pagination > li > span {
+  color: $dark-brown;
+  border: $light-brown;
+  cursor: pointer;
 }
 .search-bar {
   width: 300px;

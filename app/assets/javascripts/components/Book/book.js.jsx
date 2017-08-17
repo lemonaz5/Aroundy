@@ -6,6 +6,7 @@ class Book extends React.Component {
     this.handleUpdate = this.handleUpdate.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.validRecord  = this.validRecord.bind(this)
+    this.powerShow = this.powerShow.bind(this)
     this.state = {
       edit: false,
       title: this.props.book.title,
@@ -102,6 +103,7 @@ class Book extends React.Component {
             <option value="comedy">Comedy</option>
             <option value="romance">Romance</option>
             <option value="knowledge">Knowledge</option>
+            <option value="mystery">Mystery</option>
             <option value="indy">Indy</option>
             <option value="manga">Manga</option>
           </select>
@@ -139,15 +141,24 @@ class Book extends React.Component {
       </tr>
     )
   }
+  powerShow(number) {
+    return(
+      <i key={number} className="fa fa-star"></i>
+    )
+  }
   renderRecord() {
     var bookList = this.props.book
+    var powerShow = []
+    for (var i=0; i<bookList.power;i++) {
+      powerShow.push(this.powerShow(i))
+    }
     return(
       <tr>
         <td>{bookList.title}</td>
         <td>{bookList.author}</td>
         <td>{bookList.completed_date}</td>
         <td>{bookList.genre}</td>
-        <td>{bookList.power}</td>
+        <td>{powerShow}</td>
         <td>{bookList.description}</td>
         <td>
           <button className="btn btn-warning btn-xs"
