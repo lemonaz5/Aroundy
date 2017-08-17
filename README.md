@@ -1,24 +1,30 @@
-# README
+#Aroundy
+This is a project built for Microsoft Student Partner (MSP) interview by Wannita Takerngsaksiri. 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Getting started
 
-Things you may want to cover:
+To get started with the webapp, clone the repo and then install the needed gems:
 
-* Ruby version
+```
+$ bundle install
+```
 
-* System dependencies
+Next, migrate the database:
 
-* Configuration
+```
+$ rails db:migrate
+```
 
-* Database creation
+For database generator(may not need)
+...
+$ rails db:seed
+...
 
-* Database initialization
 
-* How to run the test suite
+Run the webapp in a local server:
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+$ rails server
+```
 
-* Deployment instructions
 
-* ...
