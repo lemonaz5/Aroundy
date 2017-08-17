@@ -11,6 +11,6 @@
               author: Faker::GameOfThrones.character,
               description: Faker::HarryPotter.quote,
               genre: Faker::Book.genre,
-              power: rand(5),
+              power: rand(1..5),
               completed_date: Date.today + rand(3).months)
 end
