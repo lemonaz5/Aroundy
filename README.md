@@ -1,4 +1,4 @@
-#Aroundy
+# Aroundy
 This is a project built for Microsoft Student Partner (MSP) interview by Wannita Takerngsaksiri. 
 
 ## Getting started
