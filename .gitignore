@@ -17,6 +17,9 @@
 !/log/.keep
 !/tmp/.keep
 
+# Ignore package.json
+ /package.json
+
 /node_modules
 /yarn-error.log
 
