@@ -1,5 +1,5 @@
 # Aroundy
-This is a project built for Microsoft Student Partner (MSP) interview by Wannita Takerngsaksiri. 
+This is a project built for Microsoft Student Partner (MSP) interview by Wannita Takerngsaksiri.
 
 ## Getting started
 
@@ -26,5 +26,5 @@ Run the web app in a local server:
 ```
 $ rails server
 ```
-
+You can open the website now in localhost:3000
 
